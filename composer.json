@@ -1,0 +1,23 @@
+{
+  "name": "miaoxing/wechat-pay",
+  "description": "Miaoxing Wechat Pay Plugin",
+  "keywords": [
+    "miaoxing", "wechat", "pay"
+  ],
+  "license": "MIT",
+  "require": {
+    "miaoxing/app": "dev-master@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Miaoxing\\WechatPay\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MiaoxingTest\\WechatPay\\": "tests"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
