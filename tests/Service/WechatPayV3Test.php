@@ -85,7 +85,7 @@ class WechatPayV3Test extends \Miaoxing\Plugin\Test\BaseTestCase
 
     protected function getPaymentService(array $options = [])
     {
-        $wechatPay = new \services\payments\WechatPayV3(['wei' => $this->wei] + $options);
+        $wechatPay = new \Miaoxing\Payment\Payment\WechatPayV3(['wei' => $this->wei] + $options);
 
         return $wechatPay;
     }
