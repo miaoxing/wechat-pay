@@ -11,7 +11,7 @@ class Plugin extends \miaoxing\plugin\BasePlugin
     public function onAddressManagerRender()
     {
         if (wei()->ua->isWeChat() && wei()->setting('orders.enableWechatAddress')) {
-            $this->view->display('wechatPay:addressManagerRender.php');
+            $this->view->display('wechat-pay:addressManagerRender.php');
         }
     }
 }
