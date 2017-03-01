@@ -2,7 +2,7 @@
 
 namespace Miaoxing\WechatPay\Service;
 
-use \SimpleXMLElement;
+use SimpleXMLElement;
 
 /**
  * 微信支付V3接口
@@ -89,6 +89,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
             'nonce_str' => $this->generateNonceStr(),
         ];
         $data['sign'] = $this->sign($data);
+
         return $this->call('tools/shorturl', $data);
     }
 
@@ -131,6 +132,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
         ];
         unset($data['id']);
         $data['sign'] = $this->sign($data);
+
         return $this->call('mmpaymkttransfers/sendredpack', $data, true);
     }
 
@@ -149,11 +151,12 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
             'partner_trade_no' => $data['partner_trade_no'],
             'openid' => $data['openid'],
             'check_name' => 'NO_CHECK',
-            'amount' => (int)$data['amount'],
+            'amount' => (int) $data['amount'],
             'desc' => $data['desc'],
-            'spbill_create_ip' => wei()->request->getServer('SERVER_ADDR', '127.0.0.1')
+            'spbill_create_ip' => wei()->request->getServer('SERVER_ADDR', '127.0.0.1'),
         ];
         $data['sign'] = $this->sign($data);
+
         return $this->call('mmpaymkttransfers/promotion/transfers', $data, true);
     }
 
@@ -170,7 +173,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
     {
         $this->logger->info('Wechat pay data', [
             'url' => $url,
-            'data' => $data
+            'data' => $data,
         ]);
         $xml = $this->arrayToXmlString($data);
 
@@ -181,7 +184,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
             }
             $curlOptions = [
                 CURLOPT_SSLCERT => $this->sslCertFile,
-                CURLOPT_SSLKEY => $this->sslKeyFile
+                CURLOPT_SSLKEY => $this->sslKeyFile,
             ];
         } else {
             $curlOptions = [];
@@ -197,10 +200,11 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
 
         if (!$http->isSuccess()) {
             $e = $http->getErrorException();
+
             return ['code' => $e->getCode(), 'message' => $e->getMessage()];
         }
 
-        $ret =  $this->parseData($http->getResponse());
+        $ret = $this->parseData($http->getResponse());
         if ($ret['code'] !== 1) {
             $this->logger->warning($ret['message'], $ret);
         }
@@ -213,7 +217,8 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
                 'data' => $data,
                 'ret' => $ret,
             ]);
-            $retry--;
+            --$retry;
+
             return $this->call($url, $data, $useCert, $retry);
         } else {
             return $ret;
@@ -234,6 +239,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
         if (!isset($data['return_code']) || $data['return_code'] != 'SUCCESS') {
             $data['code'] = -1;
             $data['message'] = '很抱歉，接口出错：' . (isset($this->messages[$data['return_msg']]) ? $this->messages[$data['return_msg']] : $data['return_msg']);
+
             return $data;
         }
 
@@ -241,11 +247,13 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
         if (!isset($data['result_code']) || $data['result_code'] != 'SUCCESS') {
             $data['code'] = -2;
             $data['message'] = '很抱歉，微信出错：' . $data['err_code_des'];
+
             return $data;
         }
 
         $data['code'] = 1;
         $data['message'] = $data['return_msg'];
+
         return $data;
     }
 
@@ -259,6 +267,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
     public function sign(array $data)
     {
         $sign = wei()->wechatApi->generateSign($data) . '&key=' . $this->appKey;
+
         return strtoupper(md5($sign));
     }
 
@@ -280,6 +289,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
             return $data;
         } else {
             $this->logger->info('原生支付校验失败', $data + ['generatedSign' => $generatedSign]);
+
             return false;
         }
     }
@@ -323,6 +333,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
         $data += $defaults;
         $data['sign'] = $this->sign($data);
         $this->logger->info('Response native pay data', $data);
+
         return $this->arrayToXmlString($data);
     }
 
@@ -337,9 +348,10 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
     {
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $str = '';
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; ++$i) {
             $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
         }
+
         return $str;
     }
 
@@ -357,7 +369,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
         libxml_use_internal_errors($useErrors);
 
         // Fix the issue that XML parse empty data to new SimpleXMLElement object
-        return array_map('strval', (array)$array);
+        return array_map('strval', (array) $array);
     }
 
     /**
@@ -373,8 +385,8 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
         if ($xml === null) {
             $xml = new SimpleXMLElement('<xml/>');
         }
-        foreach($array as $key => $value) {
-            if(is_array($value)) {
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
                 if (isset($value[0])) {
                     foreach ($value as $subValue) {
                         $subNode = $xml->addChild($key);
@@ -395,6 +407,7 @@ class WechatPayApiV3 extends \miaoxing\plugin\BaseService
                 }
             }
         }
+
         return $xml;
     }
 

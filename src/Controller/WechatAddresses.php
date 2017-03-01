@@ -9,7 +9,7 @@ class WechatAddresses extends \miaoxing\plugin\BaseController
         $wechatPay = wei()->payment()->createCurrentWechatPayService();
 
         $data = $wechatPay->createAddressData([
-            'url' => $this->request->getReferer()
+            'url' => $this->request->getReferer(),
         ]);
 
         return $this->ret($data);
