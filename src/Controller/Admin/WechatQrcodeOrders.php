@@ -3,7 +3,7 @@
 namespace Miaoxing\WechatPay\Controller\Admin;
 
 use Miaoxing\Logistics\Service\Logistics;
-use plugins\mall\services\Order;
+use Miaoxing\Order\Service\Order;
 
 class WechatQrcodeOrders extends \miaoxing\plugin\BaseController
 {
