@@ -2,7 +2,7 @@
 
 namespace Miaoxing\WechatPay\Controller\Admin;
 
-use plugins\cart\services\Cart;
+use Miaoxing\Cart\Service\Cart;
 
 class WechatQrcodeProducts extends \miaoxing\plugin\BaseController
 {
