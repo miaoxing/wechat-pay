@@ -113,7 +113,7 @@ class WechatPayV3Test extends \Miaoxing\Plugin\Test\BaseTestCase
             'amount' => '100.00',
         ]);
 
-        $wechatPayApiV3Mock = $this->getMockBuilder('\plugins\wechatPay\services\WechatPayApiV3')->getMock();
+        $wechatPayApiV3Mock = $this->getMockBuilder('\Miaoxing\WechatPay\Service\WechatPayApiV3')->getMock();
         $wechatPayApiV3Mock->expects($this->any())
             ->method('unifiedOrder')
             ->will($this->returnValue($unifiedOrderResult));
