@@ -12,7 +12,7 @@ use SimpleXMLElement;
  * @method \Wei\Http http(array $options = [])
  * @link http://pay.weixin.qq.com/wiki/doc/api/index.php
  */
-class WechatPayApiV3 extends \miaoxing\plugin\BaseService
+class WechatPayApiV3 extends \Miaoxing\Plugin\BaseService
 {
     protected $baseUrl = 'https://api.mch.weixin.qq.com';
 
