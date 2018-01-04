@@ -5,7 +5,7 @@ namespace Miaoxing\WechatPay\Controller\Admin;
 use Miaoxing\Logistics\Service\Logistics;
 use Miaoxing\Order\Service\Order;
 
-class WechatQrcodeOrders extends \miaoxing\plugin\BaseController
+class WechatQrcodeOrders extends \Miaoxing\Plugin\BaseController
 {
     public function newAction()
     {

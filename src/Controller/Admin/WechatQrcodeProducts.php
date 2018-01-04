@@ -4,7 +4,7 @@ namespace Miaoxing\WechatPay\Controller\Admin;
 
 use Miaoxing\Cart\Service\Cart;
 
-class WechatQrcodeProducts extends \miaoxing\plugin\BaseController
+class WechatQrcodeProducts extends \Miaoxing\Plugin\BaseController
 {
     /**
      * 选择商品,展示原生支付二维码

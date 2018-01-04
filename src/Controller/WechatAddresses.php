@@ -2,7 +2,7 @@
 
 namespace Miaoxing\WechatPay\Controller;
 
-class WechatAddresses extends \miaoxing\plugin\BaseController
+class WechatAddresses extends \Miaoxing\Plugin\BaseController
 {
     public function signAction()
     {
