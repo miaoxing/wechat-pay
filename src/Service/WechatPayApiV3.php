@@ -238,7 +238,8 @@ class WechatPayApiV3 extends \Miaoxing\Plugin\BaseService
         // 处理返回结果
         if (!isset($data['return_code']) || $data['return_code'] != 'SUCCESS') {
             $data['code'] = -1;
-            $data['message'] = '很抱歉，接口出错：' . (isset($this->messages[$data['return_msg']]) ? $this->messages[$data['return_msg']] : $data['return_msg']);
+            $data['message'] = '很抱歉，接口出错：' . (isset($this->messages[$data['return_msg']]) ?
+                    $this->messages[$data['return_msg']] : $data['return_msg']);
 
             return $data;
         }

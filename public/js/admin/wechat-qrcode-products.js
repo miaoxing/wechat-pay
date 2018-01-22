@@ -1,4 +1,5 @@
-define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
+/* global Bloodhound */
+define(['assets/numeric', 'bootbox', 'template'], function (numeric, bootbox, template) {
   var self = {};
 
   self.container = $('.product-qrcode-generator');
@@ -18,7 +19,9 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
 
     // 显示商品
     for (var i in self.data) {
-      self.addProduct(self.data[i]);
+      if ({}.hasOwnProperty.call(self.data, i)) {
+        self.addProduct(self.data[i]);
+      }
     }
 
     // 初始化搜索建议引擎
@@ -32,6 +35,7 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
         ajax: {
           global: false,
           success: function () {
+            // ignore default tips
           }
         },
         filter: function (result) {
@@ -52,7 +56,7 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
           suggestion: template.compile($('#product-tpl').html())
         }
       })
-      .on('typeahead:selected', function (event, suggestion, name) {
+      .on('typeahead:selected', function (event, suggestion) {
         self.addProduct(suggestion);
       });
 
@@ -79,7 +83,7 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
     self.container.on('click', '.add-quantity', function () {
       var input = $(this).prev();
       var quantity = numeric.add(input.val(), 1);
-      var max = parseInt(input.parent().parent().find('.sku-quantity').html());
+      var max = parseInt(input.parent().parent().find('.sku-quantity').html(), 10);
       input.val(Math.min(quantity, max));
 
       self.generateQrcode();
@@ -94,6 +98,7 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
     });
 
     // 定时查询生成的商品是否支付成功
+    var INTERVAL_TIME = 3000;
     setInterval(function () {
       if (!self.generateTime) {
         return;
@@ -122,12 +127,13 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
             className: 'text-lg',
             message: '您生成的商品已支付成功,5秒后自动关闭'
           });
+          var CLOSE_TIME = 5000;
           setTimeout(function () {
             bootbox.hideAll();
-          }, 5000);
+          }, CLOSE_TIME);
         }
       });
-    }, 3000);
+    }, INTERVAL_TIME);
   };
 
   self.addProduct = function (product) {
@@ -161,7 +167,7 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
     // 符合当前选择的规格
     var validSkus = [];
 
-    if (attrIds.length == 0) {
+    if (attrIds.length === 0) {
       quantity = product.skus[0].quantity;
     } else {
       for (var i in product.skus) {
@@ -185,26 +191,28 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
     var displayPrice = form.find('.product-price-range');
 
     // 一个都没有选中,说明取消了选择
-    if (validSkus.length == 0) {
+    if (validSkus.length === 0) {
       validSkus = product.skus;
     }
 
-    if (validSkus.length == 1) {
+    if (validSkus.length === 1) {
       displayPrice.html(validSkus[0].price);
     } else {
       var min = parseFloat(validSkus[0].price);
       var max = min;
-      for (var i in validSkus) {
-        var price = parseFloat(validSkus[i].price);
-        if (price < min) {
-          min = price;
-        }
-        if (price > max) {
-          max = price;
+      for (var j in validSkus) {
+        if ({}.hasOwnProperty.call(validSkus, j)) {
+          var price = parseFloat(validSkus[j].price);
+          if (price < min) {
+            min = price;
+          }
+          if (price > max) {
+            max = price;
+          }
         }
       }
 
-      if (min == max) {
+      if (min === max) {
         displayPrice.html(min.toFixed(2));
       } else {
         displayPrice.html(min.toFixed(2) + '~' + max.toFixed(2));
@@ -233,7 +241,7 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
   // 判断一个数组是否在另一个数组中
   self.arrayInArray = function (container, array) {
     for (var i in array) {
-      if ($.inArray(array[i], container) == -1) {
+      if ($.inArray(array[i], container) === -1) {
         return false;
       }
     }
@@ -247,7 +255,9 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
       var data = $(this).serializeArray();
       var obj = {};
       for (var i in data) {
-        obj[data[i]['name']] = data[i]['value'];
+        if ({}.hasOwnProperty.call(data, i)) {
+          obj[data[i]['name']] = data[i]['value'];
+        }
       }
       products.push(obj);
     });
@@ -261,10 +271,11 @@ define(['assets/numeric', 'bootbox'], function (numeric, bootbox) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
+    // eslint-disable-next-line no-magic-numbers
     if (month < 10) {
       month = '0' + month.toString();
     }
-    return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
   };
 
   return self;

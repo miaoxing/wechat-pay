@@ -22,7 +22,7 @@
 
 <div class="row product-qrcode-generator">
   <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-    <h3>步骤一，选择商品</h3>
+    <h3 class="product-qrcode-generator-title">步骤一，选择商品</h3>
 
     <div class="well form-well">
       <form class="form-inline" role="form">
@@ -32,12 +32,12 @@
         </div>
       </form>
     </div>
-    <ul class="list-group product-list-group">
+    <ul class="list-group product-list-group list-unstyled">
 
     </ul>
   </div>
   <div class="col-xs-12 col-sm-5">
-    <h3>步骤二，扫描或下载二维码</h3>
+    <h3 class="product-qrcode-generator-title">步骤二，扫描或下载二维码</h3>
     <img class="product-qrcode img-responsive center" src="">
 
     <div class="center qrcode-actions">
@@ -52,7 +52,7 @@
   <li class="list-group-item">
     <%== template.render('product-tpl', product) %>
     <div class="media-actions">
-      <a href="javascript:;" title="删除" class="light-grey remove-product">
+      <a href="javascript:;" title="删除" class="text-muted remove-product">
         <i class="fa fa-times-circle-o"></i>
       </a>
     </div>

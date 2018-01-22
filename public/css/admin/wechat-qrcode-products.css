@@ -8,7 +8,7 @@
   min-width: 250px;
 }
 
-.product-qrcode-generator h3 {
+.product-qrcode-generator-title {
   margin-bottom: 20px;
   text-align: center;
 }
@@ -40,7 +40,7 @@
 
 .media-actions a:hover {
   text-decoration: none;
-  color: #dd5a43 !important;
+  color: #dd5a43;
 }
 
 .empty-product-message {
@@ -76,7 +76,7 @@
   cursor: pointer;
 }
 
-.sku-selectors li.active span {
+.sku-selectors li.active span { /* csslint allow: overqualified-elements */
   border: 2px solid #d50;
   margin: -1px;
 }
