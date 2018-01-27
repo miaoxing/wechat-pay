@@ -1,6 +1,6 @@
 <?php $view->layout() ?>
 
-<?= $block('css') ?>
+<?= $block->css() ?>
 <style>
   .sidebar {
     display: none;
@@ -65,7 +65,7 @@
 <?php require $this->getFile('product:admin/products/richInfo.php') ?>
 <?php require $this->getFile('product:admin/skus/selector.php') ?>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require([
     'plugins/wechat-pay/js/admin/wechat-qrcode-products',

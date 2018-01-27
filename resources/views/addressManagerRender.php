@@ -4,7 +4,7 @@
   </button>
 </script>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   (function () {
     var $doc = $(document);

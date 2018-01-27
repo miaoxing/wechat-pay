@@ -1,6 +1,6 @@
 <?php $view->layout() ?>
 
-<?= $block('css') ?>
+<?= $block->css() ?>
 <style>
   .sidebar {
     display: none;
@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   // 设置提示为居中
   $.tips.defaults.valign = 'middle';
