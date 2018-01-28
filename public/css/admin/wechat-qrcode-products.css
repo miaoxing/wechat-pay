@@ -76,7 +76,7 @@
   cursor: pointer;
 }
 
-.sku-selectors li.active span { /* csslint allow: overqualified-elements */
+.sku-selectors li.active span {
   border: 2px solid #d50;
   margin: -1px;
 }
