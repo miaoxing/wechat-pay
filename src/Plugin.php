@@ -2,6 +2,8 @@
 
 namespace Miaoxing\WechatPay;
 
+use Miaoxing\Payment\Service\Payment;
+
 class Plugin extends \Miaoxing\Plugin\BasePlugin
 {
     protected $name = '微信支付';
@@ -12,6 +14,14 @@ class Plugin extends \Miaoxing\Plugin\BasePlugin
     {
         if (wei()->ua->isWeChat() && wei()->setting('orders.enableWechatAddress')) {
             $this->view->display('wechat-pay:addressManagerRender.php');
+        }
+    }
+
+    public function onPreFindPayments(Payment $payments)
+    {
+        if (!wei()->ua->isWeChat()) {
+            // TODO 更好的判断
+            $payments->andWhere("name != '微信支付'");
         }
     }
 }
