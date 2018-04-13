@@ -276,7 +276,7 @@ class WechatPayApiV3 extends \Miaoxing\Plugin\BaseService
      * 校验微信POST过来的原生支付数据是否合法
      *
      * @param string $data
-     * @return \SimpleXMLElement|false
+     * @return array|false
      */
     public function verifyNativePay($data)
     {
