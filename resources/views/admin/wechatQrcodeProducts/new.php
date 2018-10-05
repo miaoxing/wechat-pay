@@ -62,8 +62,8 @@
   </li>
 </script>
 
-<?php require $this->getFile('product:admin/products/richInfo.php') ?>
-<?php require $this->getFile('product:admin/skus/selector.php') ?>
+<?php require $this->getFile('@product/admin/products/richInfo.php') ?>
+<?php require $this->getFile('@product/admin/skus/selector.php') ?>
 
 <?= $block->js() ?>
 <script>
