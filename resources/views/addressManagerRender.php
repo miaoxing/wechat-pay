@@ -13,28 +13,16 @@
     $doc.on('address:renderList', function (e, address) {
       address.$list.find('.js-address-new').after($('.js-address-wechat-tpl').html());
 
-      // 选择微信地址
-      $doc.off('click.wechatPay').on('click.wechatPay', '.js-address-wechat-select', function () {
-        $.ajax({
-          url: $.url('wechat-addresses/sign'),
-          dataType: 'json',
-          success: function (ret) {
-            if (ret.code !== 1) {
-              $.msg(ret);
-              return;
-            }
-
-            WeixinJSBridge.invoke('editAddress', ret.data, function (res) {
-              if (res.err_msg == 'edit_address:ok') {
+      require(['plugins/wechat/js/wx'], function (wx) {
+        // 选择微信地址
+        $doc.off('click.wechatPay').on('click.wechatPay', '.js-address-wechat-select', function () {
+          wx.load(function () {
+            wx.openAddress({
+              success: function (res) {
                 createAddress(res, address);
-              } else if (res.err_msg == 'edit_address:fail') {
-                // 忽略返回
-              } else {
-                $.log(JSON.stringify(res));
-                alert('很抱歉,获取地址失败,请稍后再试');
               }
             });
-          }
+          });
         });
       });
     });
@@ -48,11 +36,11 @@
         data: {
           name: res.userName,
           contact: res.telNumber,
-          province: res.proviceFirstStageName,
-          city: res.addressCitySecondStageName,
-          area: res.addressCountiesThirdStageName,
-          address: res.addressDetailInfo,
-          zipcode: res.addressPostalCode,
+          province: res.provinceName,
+          city: res.cityName,
+          area: res.countryName,
+          address: res.detailInfo,
+          zipcode: res.postalCode,
           areaId: res.nationalCode,
           source: 2
         },
