@@ -21,7 +21,7 @@
 <!-- /.page-header -->
 
 <div class="row product-qrcode-generator">
-  <div class="col-xs-12 col-sm-5 col-sm-offset-1">
+  <div class="col-12 col-sm-5 offset-sm-1">
     <h3 class="product-qrcode-generator-title">步骤一，选择商品</h3>
 
     <div class="well form-well">
@@ -36,7 +36,7 @@
 
     </ul>
   </div>
-  <div class="col-xs-12 col-sm-5">
+  <div class="col-12 col-sm-5">
     <h3 class="product-qrcode-generator-title">步骤二，扫描或下载二维码</h3>
     <img class="product-qrcode img-responsive center" src="">
 
