@@ -85,13 +85,6 @@
   width: 100px;
 }
 
-.sku-selectors, .quantity-spinner .input-group-addon {
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
 .quantity-spinner .quantity {
   font-size: 13px;
   padding: 5px 6px;
