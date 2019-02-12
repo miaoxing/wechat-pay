@@ -23,7 +23,7 @@
     <form class="js-order-qrcode-form form-horizontal" method="post" role="form">
       <div class="input-group input-group-lg">
         <input type="tel" class="js-amount form-control" name="amount" placeholder="请输入订单金额">
-        <span class="input-group-btn">
+        <span class="input-group-append">
           <button class="btn btn-default btn-primary" type="submit">生成二维码</button>
         </span>
       </div>
