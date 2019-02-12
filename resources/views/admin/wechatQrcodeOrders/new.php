@@ -19,7 +19,7 @@
 </div>
 
 <div class="row">
-  <div class="col-10 col-offset-1 col-sm-6 offset-sm-3">
+  <div class="col-10 offset-1 col-sm-6 offset-sm-3">
     <form class="js-order-qrcode-form form-horizontal" method="post" role="form">
       <div class="input-group input-group-lg">
         <input type="tel" class="js-amount form-control" name="amount" placeholder="请输入订单金额">
