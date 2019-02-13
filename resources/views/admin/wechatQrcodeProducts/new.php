@@ -24,7 +24,7 @@
   <div class="col-12 col-sm-5 offset-sm-1">
     <h3 class="product-qrcode-generator-title">步骤一，选择商品</h3>
 
-    <div class="well form-well">
+    <div class="well">
       <form class="form-inline" role="form">
         <div class="form-group product-form-group">
           <input type="text" class="form-control product-typeahead" name="search" placeholder="请输入商品名称搜索">
