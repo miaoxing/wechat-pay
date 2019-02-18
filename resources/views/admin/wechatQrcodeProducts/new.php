@@ -38,9 +38,9 @@
   </div>
   <div class="col-12 col-sm-5">
     <h3 class="product-qrcode-generator-title">步骤二，扫描或下载二维码</h3>
-    <img class="product-qrcode img-responsive center" src="">
+    <img class="product-qrcode img-responsive text-center" src="">
 
-    <div class="center qrcode-actions">
+    <div class="text-center qrcode-actions">
       <a class="btn btn-primary btn-block download-qrcode" href="" download="商品二维码">下载</a>
     </div>
   </div>
