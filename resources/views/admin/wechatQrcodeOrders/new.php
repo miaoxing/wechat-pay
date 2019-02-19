@@ -29,10 +29,10 @@
       </div>
       <!-- /input-group -->
     </form>
-    <div class="js-qrcode-container display-none m-t-md">
+    <div class="js-qrcode-container display-none mt-4">
       <img class="js-qrcode img-max" src="">
 
-      <div class="m-t-md">
+      <div class="mt-4">
         <a class="js-download-qrcode btn btn-primary btn-lg btn-block" href="" download="微信二维码订单">下载</a>
       </div>
     </div>
