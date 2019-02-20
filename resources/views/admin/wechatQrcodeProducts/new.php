@@ -74,7 +74,7 @@
     'plugins/admin/js/data-table',
     'form',
     'template',
-    'jquery-deparam',
+    'jquery-unparam',
     'comps/typeahead.js/dist/typeahead.bundle.min'
   ], function (qrcode) {
     qrcode.newAction({
