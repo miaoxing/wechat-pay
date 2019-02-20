@@ -71,7 +71,7 @@
     'plugins/wechat-pay/js/admin/wechat-qrcode-products',
     'css!plugins/wechat-pay/css/admin/wechat-qrcode-products',
     'css!comps/typeahead.js-bootstrap3.less/typeahead',
-    'dataTable',
+    'plugins/admin/js/data-table',
     'form',
     'template',
     'jquery-deparam',
