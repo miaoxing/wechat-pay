@@ -1,5 +1,5 @@
 /* global Bloodhound */
-define(['assets/numeric', 'plugins/app/js/bootbox', 'template'], function (numeric, bootbox, template) {
+define(['plugins/product/js/numeric', 'plugins/app/js/bootbox', 'template'], function (numeric, bootbox, template) {
   var self = {};
 
   self.container = $('.product-qrcode-generator');
