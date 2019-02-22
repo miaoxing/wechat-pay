@@ -73,7 +73,7 @@
     'css!comps/typeahead.js-bootstrap3.less/typeahead',
     'plugins/admin/js/data-table',
     'form',
-    'template',
+    plugins/app/libs/artTemplate/template.min,
     'comps/typeahead.js/dist/typeahead.bundle.min'
   ], function (qrcode) {
     qrcode.newAction({
