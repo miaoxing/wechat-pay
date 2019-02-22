@@ -43,7 +43,7 @@
 <script>
   // 设置提示为居中
   $.tips.defaults.valign = 'middle';
-  require(['plugins/app/js/bootbox', 'plugins/admin/js/form'], function (bootbox) {
+  require(['plugins/app/js/bootbox/bootbox', 'plugins/admin/js/form'], function (bootbox) {
     var isBorn = false;
     var orderId = null;
     $('.js-order-qrcode-form').ajaxForm({
