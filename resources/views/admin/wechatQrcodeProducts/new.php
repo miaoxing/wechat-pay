@@ -13,7 +13,7 @@
 <?= $block->end() ?>
 
 <div class="page-header">
-  <div class="pull-right">
+  <div class="float-right">
     <a class="btn btn-default" href="<?= $url('admin/products/index') ?>">返回商品列表</a>
   </div>
   <h1>微信二维码商品</h1>
