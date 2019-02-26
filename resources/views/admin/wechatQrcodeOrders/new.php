@@ -42,7 +42,6 @@
 <?= $block->js() ?>
 <script>
   // 设置提示为居中
-  $.tips.defaults.valign = 'middle';
   require(['plugins/app/js/bootbox', 'plugins/admin/js/form'], function (bootbox) {
     var isBorn = false;
     var orderId = null;
