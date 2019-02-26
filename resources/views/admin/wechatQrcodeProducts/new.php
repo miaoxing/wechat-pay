@@ -14,7 +14,7 @@
 
 <div class="page-header">
   <div class="float-right">
-    <a class="btn btn-default" href="<?= $url('admin/products/index') ?>">返回商品列表</a>
+    <a class="btn btn-secondary" href="<?= $url('admin/products/index') ?>">返回商品列表</a>
   </div>
   <h1>微信二维码商品</h1>
 </div>

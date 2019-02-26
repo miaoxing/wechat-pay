@@ -24,7 +24,7 @@
       <div class="input-group input-group-lg">
         <input type="tel" class="js-amount form-control" name="amount" placeholder="请输入订单金额">
         <span class="input-group-append">
-          <button class="btn btn-default btn-primary" type="submit">生成二维码</button>
+          <button class="btn btn-secondary btn-primary" type="submit">生成二维码</button>
         </span>
       </div>
       <!-- /input-group -->
@@ -107,7 +107,7 @@
                 },
                 cancel: {
                   label: '取消',
-                  className: 'btn-default'
+                  className: 'btn-secondary'
                 }
               },
               callback: function (result) {
